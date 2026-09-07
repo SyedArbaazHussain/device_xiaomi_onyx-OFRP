@@ -1,0 +1,27 @@
+name: OrangeFox - Builder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 🦊 Building OrangeFox Recovery
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    permissions: write-all
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: OrangeFox Build
+      uses: UWU-TEAM/UWU-OrangeFox-Builder@v1.0.0
+      with:
+        USER_NAME: 'SyedArbaazHussain'
+        USER_EMAIL: 'arbaaz14122002@gmail.com'
+        DEVICE_TREE: 'https://github.com/SyedArbaazHussain/device_xiaomi_onyx-OFRP'
+        DEVICE_TREE_BRANCH: 'fox_12.1'
+        DEVICE_PATH: 'device/xiaomi/onyx'
+        DEVICE_NAME: 'onyx'
+        BUILD_TARGET: 'recovery'
+        GH_RELEASE: 'true'
