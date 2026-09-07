@@ -14,16 +14,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Cache Build Directory
-      uses: actions/cache@v4
-      with:
-        path: |
-          ~/.ccache
-          out/target/product/onyx
-        key: orangefox-onyx-${{ github.sha }}
-        restore-keys: |
-          orangefox-onyx-
-
     - name: OrangeFox Build
       uses: UWU-TEAM/UWU-OrangeFox-Builder@v1.0.0
       with:
@@ -33,5 +23,6 @@ jobs:
         DEVICE_TREE_BRANCH: 'fox_14.1'
         DEVICE_PATH: 'device/xiaomi/onyx'
         DEVICE_NAME: 'onyx'
+        FOX_SYNC_BRANCH: '14.1'
         BUILD_TARGET: 'recovery'
         GH_RELEASE: 'true'
