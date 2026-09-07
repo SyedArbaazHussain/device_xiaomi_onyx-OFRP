@@ -18,10 +18,17 @@ BUILD_BROKEN_PLUGIN_VALIDATION              := soong-libaosprecovery_defaults so
 
 # Architecture
 TARGET_ARCH         := arm64
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv9-a
 TARGET_CPU_ABI      := arm64-v8a
 TARGET_CPU_ABI2     :=
 TARGET_CPU_VARIANT  := generic
+TARGET_USES_64_BIT_BINDER := true
+
+TARGET_RECOVERY_DEVICE_MODULES += \
+    linker64 \
+    libc \
+    libm \
+    libdl
 
 # Power
 ENABLE_CPUSETS   := true
@@ -53,12 +60,14 @@ BOARD_MKBOOTIMG_ARGS        += --pagesize $(BOARD_KERNEL_PAGESIZE)
 BOARD_RAMDISK_USE_LZ4 := true
 
 # A/B
-BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+# BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
+BOARD_INCLUDE_RECOVERY_DTBO := true
 
 AB_OTA_UPDATER    := true
 AB_OTA_PARTITIONS += \
     boot \
     init_boot \
+    recovery \
     vendor_boot \
     dtbo \
     vbmeta \
